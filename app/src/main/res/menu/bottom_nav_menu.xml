@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/n_status"
+        android:icon="@drawable/ic_nav_status"
+        android:iconTint="@color/textColorSecondary"
+        android:title="Status" />
+
+    <item
+        android:id="@+id/n_downloads"
+        android:icon="@drawable/ic_nav_download"
+        android:iconTint="@color/textColorSecondary"
+        android:title="Downloads" />
+
+</menu>

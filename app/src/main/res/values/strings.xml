@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Status Saver</string>
+    <string name="folder_status_saver">Saved Status</string>
+    <string name="intro_title_1">Save Whatsapp Status</string>
+    <string name="intro_desc_1">Save your friend\'s Whatsapp status without asking them to send it to you.</string>
+    <string name="let_s_start">Let\'s Start</string>
+    <string name="intro_title_2"><![CDATA[Watch & Save]]></string>
+    <string name="intro_desc_2">Watch Whatsapp status then come back to app and save it.</string>
+    <string name="intro_desc_3">Quick statistic overview of your \ndownloaded status.</string>
+    <string name="intro_title_3">Status Count</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
