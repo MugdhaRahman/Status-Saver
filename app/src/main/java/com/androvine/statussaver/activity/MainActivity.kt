@@ -1,5 +1,6 @@
 package com.androvine.statussaver.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.androvine.statussaver.R
@@ -23,6 +24,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupBottomNav()
+        binding.settings.setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
     }
 
     private fun setupBottomNav() {

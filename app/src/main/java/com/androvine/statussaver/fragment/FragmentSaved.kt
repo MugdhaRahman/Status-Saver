@@ -16,7 +16,6 @@ import com.androvine.statussaver.R
 import com.androvine.statussaver.adapter.StatusAdapter
 import com.androvine.statussaver.databinding.FragmentSavedBinding
 import com.androvine.statussaver.model.StatusModel
-import com.androvine.statussaver.utils.BuildVersion
 import com.androvine.statussaver.utils.BuildVersion.Companion.isAndroidR
 import com.androvine.statussaver.utils.PermSAFUtils
 import com.google.android.material.tabs.TabLayout
@@ -36,19 +35,16 @@ class FragmentSaved : Fragment() {
 
     private var statusDocFile: DocumentFile? = null
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (BuildVersion.isAndroidR()) {
+        if (isAndroidR()) {
             val safUri = PermSAFUtils.getSAFUri(requireActivity())
             statusDocFile = findStatusesFolder(requireActivity(), safUri)!!
         }
@@ -61,8 +57,6 @@ class FragmentSaved : Fragment() {
     }
 
     private fun setupTabLayout() {
-
-        //only image list size is shown in tab layout
 
         binding.tabLayout.addTab(
             binding.tabLayout.newTab().setText("Images")
@@ -119,7 +113,6 @@ class FragmentSaved : Fragment() {
         }
 
         val arrayOfFiles = dirListByAscendingDate(file)
-
 
         arrayOfFiles?.forEach {
             if (!it.isDirectory && checkIfImageFile(it)) {
