@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
-        android:background="@color/white"
         android:elevation="3dp">
 
         <TextView
@@ -57,7 +56,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/white"
         android:textAlignment="viewEnd"
         app:itemHorizontalTranslationEnabled="true"
         app:menu="@menu/bottom_nav_menu" />

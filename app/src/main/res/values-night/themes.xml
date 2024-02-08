@@ -1,6 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.StatusSaver" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.StatusSaver." parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -10,6 +9,7 @@
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <item name="android:statusBarColor">@color/backgroundColorSecondary</item>
         <item name="android:windowLightStatusBar">false</item>
+
     </style>
 
     <style name="Theme.StatusSaver.Splash" parent="Theme.StatusSaver">
