@@ -355,6 +355,7 @@ class FragmentStatus : Fragment() {
     }
 
     private fun findStatusesFolder(context: Context, rootUri: Uri): DocumentFile? {
+
         val root = DocumentFile.fromTreeUri(context, rootUri)
         val allFiles = root?.listFiles()
         return allFiles?.find { it.name == ".Statuses" }

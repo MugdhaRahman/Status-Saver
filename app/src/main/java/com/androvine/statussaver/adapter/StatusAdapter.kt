@@ -134,7 +134,7 @@ class StatusAdapter(
         holder.binding.statusImage.setOnClickListener {
             try {
                 val file =
-                    File(Uri.parse(item.uri).path.toString()) // Remove 'file:' scheme if needed
+                    File(Uri.parse(item.uri).path.toString())
                 val fileUri = FileProvider.getUriForFile(
                     context,
                     context.applicationContext.packageName + ".provider",
