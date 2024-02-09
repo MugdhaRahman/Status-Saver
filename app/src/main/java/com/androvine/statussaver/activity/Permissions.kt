@@ -110,6 +110,7 @@ class Permissions : AppCompatActivity() {
             permSAFUtils.showSAFDialog()
         } else {
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 
@@ -118,6 +119,7 @@ class Permissions : AppCompatActivity() {
             permStorageUtils.askStoragePermission()
         } else {
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 

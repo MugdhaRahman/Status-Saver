@@ -36,7 +36,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="40dp"
             android:gravity="center"
-            android:text="Status Saver needs storage access to save your \nstatus."
+            android:text="Status Saver needs storage access to save \nyour status."
             android:textColor="@color/SubTextColor"
             android:textSize="14sp" />
 
