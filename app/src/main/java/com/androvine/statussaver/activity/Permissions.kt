@@ -20,7 +20,6 @@ class Permissions : AppCompatActivity() {
         ActivityPermissionsBinding.inflate(layoutInflater)
     }
 
-
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
     private lateinit var permSAFUtils: PermSAFUtils
     private lateinit var permStorageUtils: PermStorageUtils
