@@ -7,7 +7,10 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.os.FileUtils
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -17,12 +20,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.documentfile.provider.DocumentFile
+import com.androvine.statussaver.R
 import com.androvine.statussaver.databinding.ActivityMediaViewBinding
 import com.androvine.statussaver.databinding.DialogDeleteFilesBinding
 import com.androvine.statussaver.databinding.DialogInfoFilesBinding
 import com.androvine.statussaver.utils.BuildVersion.Companion.isAndroidR
 import com.bumptech.glide.Glide
 import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
 
 class MediaView : AppCompatActivity() {
 
@@ -231,6 +237,83 @@ class MediaView : AppCompatActivity() {
 
 
             dialog.show()
+
+        }
+
+        binding.save.setOnClickListener {
+
+            val folderName = getString(R.string.app_name)
+            val secondaryPath =
+                resources.getString(R.string.folder_status_saver)
+
+            val storagePath: String = if (isAndroidR()) {
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
+                    .toString() + File.separator + folderName + File.separator + secondaryPath
+            } else {
+                Environment.getExternalStorageDirectory()
+                    .toString() + File.separator + folderName + File.separator + secondaryPath
+            }
+
+            if (isAndroidR()) {
+                val inputUri = uri
+                Log.d("TAG", "onBindViewHolder: $inputUri")
+
+                val docFile = DocumentFile.fromSingleUri(this, inputUri)
+                val fileName = docFile?.name
+
+                val dir = File(storagePath)
+                if (!dir.exists()) {
+                    Log.e("TAG", "make dir: " + dir.mkdirs())
+                }
+
+                val newFile = File(storagePath + File.separator + fileName)
+                val inputStream =
+                    contentResolver.openInputStream(inputUri)
+                val fileOutputStream: OutputStream = FileOutputStream(newFile)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    FileUtils.copy(inputStream!!, fileOutputStream)
+                }
+                Toast.makeText(
+                    this, "Saved successfully!", Toast.LENGTH_LONG
+                ).show()
+
+                binding.saveLayout.visibility = View.GONE
+
+                inputStream?.close()
+
+            } else {
+
+                try {
+                    val oldFilePath =
+                        uri.path // Remove 'file:' scheme if needed
+                    val oldFile = File(oldFilePath!!)
+
+                    if (oldFile.exists()) {
+                        val newFile = File(storagePath + File.separator + oldFile.name)
+                        oldFile.copyTo(newFile)
+                        Toast.makeText(
+                            this, "Saved successfully!", Toast.LENGTH_SHORT
+                        ).show()
+
+                        binding.saveLayout.visibility = View.GONE
+
+
+                    } else {
+                        Log.e("TAG", "File does not exist at: $oldFilePath")
+                        Toast.makeText(
+                            this, "File does not exist!", Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } catch (e: Exception) {
+                    Log.e("TAG", "Error occurred: ${e.message}")
+                    Toast.makeText(
+                        this, "Error occurred!", Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+
+            }
+
 
         }
 
