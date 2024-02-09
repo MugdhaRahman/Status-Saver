@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_dialog_red_header" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/bg_dialog_body"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="sans-serif-medium"
+            android:padding="5dp"
+            android:text="File Name"
+            android:textColor="@color/textColor"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="start"
+            android:text="Path"
+            android:textColor="@color/textColorSecondary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/folderPath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="start"
+            android:text="folder path"
+            android:textColor="@color/textColor"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="start"
+            android:text="Size"
+            android:textColor="@color/textColorSecondary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/fileSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="start"
+            android:text="file size"
+            android:textColor="@color/textColor"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="start"
+            android:text="Date"
+            android:textColor="@color/textColorSecondary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/fileDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="start"
+            android:text="date"
+            android:textColor="@color/textColor"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="start"
+            android:text="Type"
+            android:textColor="@color/textColorSecondary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/fileType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="start"
+            android:text="File Type"
+            android:textColor="@color/textColor"
+            android:textSize="16sp" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDone"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:paddingStart="30dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="10dp"
+            android:text="Done"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:backgroundTint="@color/colorPrimary"
+            app:cornerRadius="20dp" />
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_info_dialog" />
+
+
+</RelativeLayout>

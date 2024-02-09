@@ -2,8 +2,6 @@ package com.androvine.statussaver.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.content.pm.ResolveInfo
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
@@ -13,10 +11,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.FileProvider
 import androidx.documentfile.provider.DocumentFile
 import androidx.recyclerview.widget.RecyclerView
 import com.androvine.statussaver.R
+import com.androvine.statussaver.activity.MediaView
 import com.androvine.statussaver.databinding.SingleStatusItemBinding
 import com.androvine.statussaver.model.StatusModel
 import com.androvine.statussaver.utils.BuildVersion
@@ -132,44 +130,54 @@ class StatusAdapter(
         }
 
         holder.binding.statusImage.setOnClickListener {
-            try {
-                val file =
-                    File(Uri.parse(item.uri).path.toString())
-                val fileUri = FileProvider.getUriForFile(
-                    context,
-                    context.applicationContext.packageName + ".provider",
-                    file
-                )
 
-                val openFileIntent = Intent(Intent.ACTION_VIEW)
-                openFileIntent.setDataAndType(
-                    fileUri,
-                    if (item.isVideo) "video/*" else "image/*"
-                )
-                openFileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            holder.binding.statusImage.context.startActivity(
+                Intent(holder.binding.statusImage.context, MediaView::class.java)
+                    .putExtra("uri", statusModel.uri)
+                    .putExtra("isVideo", statusModel.isVideo)
+                    .putExtra("isSaved", statusModel.isSaved)
+            )
 
-                val resInfoList: List<ResolveInfo> = context.packageManager.queryIntentActivities(
-                    openFileIntent, PackageManager.MATCH_DEFAULT_ONLY
-                )
+            // if you want to open the file in another app
 
-                for (resolveInfo in resInfoList) {
-                    val packageName = resolveInfo.activityInfo.packageName
-                    context.grantUriPermission(
-                        packageName,
-                        fileUri,
-                        Intent.FLAG_GRANT_READ_URI_PERMISSION
-                    )
-                }
-
-                holder.binding.statusImage.context.startActivity(
-                    Intent.createChooser(
-                        openFileIntent,
-                        "Open File"
-                    )
-                )
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+//            try {
+//                val file =
+//                    File(Uri.parse(item.uri).path.toString())
+//                val fileUri = FileProvider.getUriForFile(
+//                    context,
+//                    context.applicationContext.packageName + ".provider",
+//                    file
+//                )
+//
+//                val openFileIntent = Intent(Intent.ACTION_VIEW)
+//                openFileIntent.setDataAndType(
+//                    fileUri,
+//                    if (item.isVideo) "video/*" else "image/*"
+//                )
+//                openFileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+//
+//                val resInfoList: List<ResolveInfo> = context.packageManager.queryIntentActivities(
+//                    openFileIntent, PackageManager.MATCH_DEFAULT_ONLY
+//                )
+//
+//                for (resolveInfo in resInfoList) {
+//                    val packageName = resolveInfo.activityInfo.packageName
+//                    context.grantUriPermission(
+//                        packageName,
+//                        fileUri,
+//                        Intent.FLAG_GRANT_READ_URI_PERMISSION
+//                    )
+//                }
+//
+//                holder.binding.statusImage.context.startActivity(
+//                    Intent.createChooser(
+//                        openFileIntent,
+//                        "Open File"
+//                    )
+//                )
+//            } catch (e: Exception) {
+//                e.printStackTrace()
+//            }
         }
     }
 
