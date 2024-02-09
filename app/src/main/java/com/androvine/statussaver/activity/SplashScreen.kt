@@ -26,15 +26,22 @@ class SplashScreen : AppCompatActivity() {
                 startActivity(Intent(this, IntroActivity::class.java))
                 finish()
             } else {
-                if (BuildVersion.isAndroidR() && !PermSAFUtils.verifySAF(this)) {
-                    startActivity(Intent(this, Permissions::class.java))
-                    finish()
-                } else if (!PermStorageUtils.isStoragePermissionGranted(this)) {
-                    startActivity(Intent(this, Permissions::class.java))
-                    finish()
+                if (BuildVersion.isAndroidR()) {
+                    if (PermSAFUtils.verifySAF(this)) {
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    } else {
+                        startActivity(Intent(this, Permissions::class.java))
+                        finish()
+                    }
                 } else {
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
+                    if (PermStorageUtils.isStoragePermissionGranted(this)) {
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    } else {
+                        startActivity(Intent(this, Permissions::class.java))
+                        finish()
+                    }
                 }
             }
 

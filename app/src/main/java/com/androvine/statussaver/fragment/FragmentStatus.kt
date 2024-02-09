@@ -1,10 +1,7 @@
 package com.androvine.statussaver.fragment
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
@@ -12,19 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.documentfile.provider.DocumentFile
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.androvine.statussaver.R
 import com.androvine.statussaver.adapter.StatusAdapter
 import com.androvine.statussaver.databinding.FragmentStatusBinding
 import com.androvine.statussaver.model.StatusModel
-import com.androvine.statussaver.utils.BuildVersion
 import com.androvine.statussaver.utils.BuildVersion.Companion.isAndroidR
 import com.androvine.statussaver.utils.PermSAFUtils
-import com.androvine.statussaver.utils.PermStorageUtils
 import com.google.android.material.tabs.TabLayout
 import java.io.File
 import java.util.concurrent.Executors
@@ -40,7 +32,7 @@ class FragmentStatus : Fragment() {
     private var downloadList: MutableList<StatusModel> = mutableListOf()
 
     private val statusAdapter by lazy {
-        StatusAdapter(requireContext(),arrayListOf())
+        StatusAdapter(requireContext(), arrayListOf())
     }
 
     private var statusDocFile: DocumentFile? = null
