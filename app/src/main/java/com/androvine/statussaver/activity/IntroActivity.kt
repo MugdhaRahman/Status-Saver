@@ -15,7 +15,10 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.androvine.statussaver.R
 import com.androvine.statussaver.databinding.ActivityIntroBinding
+import com.androvine.statussaver.utils.BuildVersion
 import com.androvine.statussaver.utils.IntroUtils
+import com.androvine.statussaver.utils.PermSAFUtils
+import com.androvine.statussaver.utils.PermStorageUtils
 
 class IntroActivity : AppCompatActivity() {
 
@@ -101,7 +104,13 @@ class IntroActivity : AppCompatActivity() {
 
         binding.startButton.setOnClickListener {
             introUtils.setFirstTimeLaunch(false)
-            startActivity(Intent(this, MainActivity::class.java))
+            if (BuildVersion.isAndroidR() && !PermSAFUtils.verifySAF(this)) {
+                startActivity(Intent(this, Permissions::class.java))
+            } else if (!PermStorageUtils.isStoragePermissionGranted(this)) {
+                startActivity(Intent(this, Permissions::class.java))
+            } else {
+                startActivity(Intent(this, MainActivity::class.java))
+            }
             finish()
         }
 

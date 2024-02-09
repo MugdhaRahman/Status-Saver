@@ -36,10 +36,6 @@ class FragmentStatus : Fragment() {
         FragmentStatusBinding.inflate(layoutInflater)
     }
 
-    private lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
-    private lateinit var permSAFUtils: PermSAFUtils
-    private lateinit var permStorageUtils: PermStorageUtils
-
     private var statusList: MutableList<StatusModel> = mutableListOf()
     private var downloadList: MutableList<StatusModel> = mutableListOf()
 
@@ -71,13 +67,6 @@ class FragmentStatus : Fragment() {
 
         setupTabLayout()
 
-        setupIntentLauncher()
-
-        checkPermissions()
-
-        setupPermission()
-
-
     }
 
     private fun setupTabLayout() {
@@ -107,73 +96,6 @@ class FragmentStatus : Fragment() {
             }
         })
     }
-
-    private fun checkPermissions() {
-
-        if (BuildVersion.isAndroidR()) {
-            if (PermSAFUtils.verifySAF(requireActivity())) {
-                binding.permissionLayout.visibility = View.GONE
-                binding.llMedia.visibility = View.VISIBLE
-            } else {
-                binding.permissionLayout.visibility = View.VISIBLE
-                binding.llMedia.visibility = View.GONE
-            }
-        } else {
-            if (PermStorageUtils.isStoragePermissionGranted(requireActivity())) {
-                binding.permissionLayout.visibility = View.GONE
-                binding.llMedia.visibility = View.VISIBLE
-            } else {
-                binding.permissionLayout.visibility = View.VISIBLE
-                binding.llMedia.visibility = View.GONE
-            }
-        }
-    }
-
-    private fun setupPermission() {
-
-        binding.btnAllow.setOnClickListener {
-            if (BuildVersion.isAndroidR()) {
-                permSAFUtils.showSAFDialog()
-            } else {
-                permStorageUtils.askStoragePermission()
-            }
-        }
-
-        permStorageUtils.setPermissionCallback(object : PermStorageUtils.PermissionCallback {
-            override fun onPermissionGranted() {
-                binding.permissionLayout.visibility = View.GONE
-                binding.llMedia.visibility = View.VISIBLE
-            }
-
-            override fun onPermissionDenied() {
-                binding.imgPermission.setImageResource(R.drawable.img_permission_saf_2)
-                binding.tvPermission.text =
-                    "Storage permission is required to access media files \nplease try again."
-                binding.tvAllow.text = "Try Again"
-
-            }
-        })
-
-
-    }
-
-    private fun setupIntentLauncher() {
-        requestPermissionLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        ) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                permSAFUtils.addSAFPermission(result.data!!)
-            } else {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    permSAFUtils.showSAFDialog()
-                }
-            }
-        }
-        permSAFUtils = PermSAFUtils(requireActivity(), requestPermissionLauncher)
-        permStorageUtils = PermStorageUtils(requireActivity())
-
-    }
-
 
     private fun showStatusPhoto() {
         statusList.clear()
@@ -421,20 +343,8 @@ class FragmentStatus : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        checkPermissions()
         showStatusPhoto()
         binding.tabLayout.getTabAt(0)?.select()
-    }
-
-
-    @Deprecated("Deprecated in Java")
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        permStorageUtils.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
 

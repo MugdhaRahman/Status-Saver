@@ -7,7 +7,10 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.androvine.statussaver.R
+import com.androvine.statussaver.utils.BuildVersion
 import com.androvine.statussaver.utils.IntroUtils
+import com.androvine.statussaver.utils.PermSAFUtils
+import com.androvine.statussaver.utils.PermStorageUtils
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreen : AppCompatActivity() {
@@ -15,12 +18,21 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-
         Handler(Looper.getMainLooper()).postDelayed({
 
             val introUtils = IntroUtils(this)
-            if (introUtils.isFirstTimeLaunch()) {
+
+            if (BuildVersion.isAndroidR() && introUtils.isFirstTimeLaunch()) {
                 startActivity(Intent(this, IntroActivity::class.java))
+                finish()
+            } else if (introUtils.isFirstTimeLaunch()) {
+                startActivity(Intent(this, IntroActivity::class.java))
+                finish()
+            } else if (BuildVersion.isAndroidR() && !PermSAFUtils.verifySAF(this)) {
+                startActivity(Intent(this, Permissions::class.java))
+                finish()
+            } else if (!PermStorageUtils.isStoragePermissionGranted(this)) {
+                startActivity(Intent(this, Permissions::class.java))
                 finish()
             } else {
                 startActivity(Intent(this, MainActivity::class.java))
@@ -28,7 +40,6 @@ class SplashScreen : AppCompatActivity() {
             }
 
         }, 2000)
-
 
     }
 }
