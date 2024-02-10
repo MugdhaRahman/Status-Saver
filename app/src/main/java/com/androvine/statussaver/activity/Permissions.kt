@@ -1,10 +1,17 @@
 package com.androvine.statussaver.activity
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.view.Window
+import android.widget.Button
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -28,11 +35,17 @@ class Permissions : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        if (!isWhatsappInstalled()) {
+            showWhatsappNotInstalledDialog()
+        }
+
         setupIntentLauncher()
 
         checkPermissions()
 
         setupPermission()
+
+
 
     }
 
@@ -45,6 +58,7 @@ class Permissions : AppCompatActivity() {
             allowedUI()
         }
     }
+
 
     private fun setupPermission() {
 
@@ -122,10 +136,43 @@ class Permissions : AppCompatActivity() {
         }
     }
 
+    private fun isWhatsappInstalled(): Boolean {
+        val pm = this.packageManager
+        var appInstalled = false
+        try {
+            pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES)
+            appInstalled = true
+        } catch (e: PackageManager.NameNotFoundException) {
+            Log.e("TAG", "isWhatsappInstalled: ", e)
+        }
+        return appInstalled
+    }
+
+    private fun showWhatsappNotInstalledDialog() {
+
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_whatsapp_not_installed)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+
+        val okButton = dialog.findViewById<Button>(R.id.btnOk)
+        okButton.setOnClickListener {
+            dialog.dismiss()
+            finish()
+        }
+
+        dialog.show()
+
+    }
+
     override fun onResume() {
         super.onResume()
         checkPermissions()
+
     }
+
 
     @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
