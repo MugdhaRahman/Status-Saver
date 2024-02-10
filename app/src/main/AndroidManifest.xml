@@ -17,8 +17,6 @@
         <intent>
             <action android:name="android.intent.action.SENDTO" />
         </intent>
-
-        <package android:name="com.whatsapp" />
     </queries>
 
     <application
@@ -29,7 +27,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.StatusSaver"
         tools:targetApi="31">

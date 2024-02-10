@@ -107,25 +107,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="Privacy Policy"
                 android:textColor="@color/textColorSecondary"
                 android:textSize="14sp" />
 
-
-            <TextView
-                android:id="@+id/btnHowToAllow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="How to allow access"
-                android:textColor="@color/linkColor"
-                android:textSize="14sp" />
 
 
         </LinearLayout>

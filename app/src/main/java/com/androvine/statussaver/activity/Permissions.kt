@@ -6,16 +6,17 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.Window
 import android.widget.Button
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.androvine.statussaver.R
+import com.androvine.statussaver.constants.Constants
 import com.androvine.statussaver.databinding.ActivityPermissionsBinding
 import com.androvine.statussaver.utils.BuildVersion
 import com.androvine.statussaver.utils.PermSAFUtils
@@ -45,6 +46,13 @@ class Permissions : AppCompatActivity() {
 
         setupPermission()
 
+        binding.btnPrivacyPolicy.setOnClickListener {
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(Constants.privacyPolicyUrl)
+            )
+            startActivity(browserIntent)
+        }
 
 
     }
@@ -106,7 +114,6 @@ class Permissions : AppCompatActivity() {
         binding.permissionImg.setImageResource(R.drawable.ic_checkmark_permission)
         binding.permissionDescription.text = "You have granted the permission"
         binding.btnAllow.text = "Let's Go"
-        binding.btnHowToAllow.visibility = View.INVISIBLE
     }
 
     private fun deniedUI() {
@@ -115,7 +122,6 @@ class Permissions : AppCompatActivity() {
         binding.permissionImg.setImageResource(R.drawable.permission_img)
         binding.permissionDescription.text = "Permission is required to save WhatsApp status"
         binding.btnAllow.text = "Try Again"
-        binding.btnHowToAllow.visibility = View.VISIBLE
     }
 
     private fun goHomeAboveR() {
