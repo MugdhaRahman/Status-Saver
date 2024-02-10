@@ -48,13 +48,10 @@ class Permissions : AppCompatActivity() {
 
         binding.btnPrivacyPolicy.setOnClickListener {
             val browserIntent = Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse(Constants.privacyPolicyUrl)
+                Intent.ACTION_VIEW, Uri.parse(Constants.privacyPolicyUrl)
             )
             startActivity(browserIntent)
         }
-
-
     }
 
 
@@ -87,8 +84,6 @@ class Permissions : AppCompatActivity() {
                 deniedUI()
             }
         })
-
-
     }
 
     private fun setupIntentLauncher() {
@@ -182,9 +177,7 @@ class Permissions : AppCompatActivity() {
 
     @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         permStorageUtils.onRequestPermissionsResult(requestCode, permissions, grantResults)
