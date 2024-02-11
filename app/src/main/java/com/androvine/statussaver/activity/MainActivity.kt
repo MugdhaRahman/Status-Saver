@@ -31,10 +31,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupBottomNav()
-        binding.settings.setOnClickListener {
-            startActivity(Intent(this, SettingsActivity::class.java))
-        }
+        setupOnClickListeners()
+
     }
+
 
     private fun setupBottomNav() {
 
@@ -88,6 +88,16 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
 
     }
+
+    private fun setupOnClickListeners() {
+        binding.settings.setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
+        binding.directChat.setOnClickListener {
+            startActivity(Intent(this, DirectChat::class.java))
+        }
+    }
+
 
     override fun onResume() {
         super.onResume()

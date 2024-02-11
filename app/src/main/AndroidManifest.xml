@@ -32,6 +32,9 @@
         android:theme="@style/Theme.StatusSaver"
         tools:targetApi="31">
         <activity
+            android:name=".activity.DirectChat"
+            android:exported="false" />
+        <activity
             android:name=".activity.MediaView"
             android:exported="false" />
         <activity

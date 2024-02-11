@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    tools:context=".activity.MainActivity">
-
+    tools:context=".activity.DirectChat">
 
     <RelativeLayout
         android:id="@+id/toolbar_layout"
@@ -15,29 +14,30 @@
         android:layout_alignParentTop="true"
         android:elevation="3dp">
 
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/textColorSecondary" />
+
         <TextView
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/iv_back"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/app_name"
+            android:text="Direct Chat"
             android:textColor="@color/textColor"
             android:textSize="18sp" />
-
-        <ImageView
-            android:id="@+id/directChat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="20dp"
-            android:layout_toStartOf="@id/settings"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?selectableItemBackground"
-            android:src="@drawable/ic_direct_chat"
-            app:tint="@color/textColorSecondary" />
 
         <ImageView
             android:id="@+id/settings"
@@ -57,19 +57,20 @@
 
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
+        android:id="@+id/viewPagerDC"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottomBar"
+        android:layout_above="@id/bottomBarDC"
         android:layout_below="@id/toolbar_layout" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomBar"
+        android:id="@+id/bottomBarDC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:textAlignment="viewEnd"
         app:itemHorizontalTranslationEnabled="true"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu_direct_chat" />
+
 
 </RelativeLayout>

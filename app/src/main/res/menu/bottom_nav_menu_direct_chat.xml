@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/n_DC"
+        android:icon="@drawable/ic_direct_chat"
+        android:iconTint="@color/textColorSecondary"
+        android:title="Direct Chat" />
+
+    <item
+        android:id="@+id/n_contacts"
+        android:icon="@drawable/ic_nav_contact"
+        android:iconTint="@color/textColorSecondary"
+        android:title="Contacts" />
+
+</menu>
