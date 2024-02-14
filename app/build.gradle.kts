@@ -59,6 +59,9 @@ dependencies {
     implementation("androidx.preference:preference-ktx:1.2.1")
 
     // for image loading
-    implementation ("com.github.bumptech.glide:glide:4.13.1")
+    implementation ("com.github.bumptech.glide:glide:4.13.2")
+
+    // for ccp
+    implementation("com.hbb20:ccp:2.7.3")
 
 }

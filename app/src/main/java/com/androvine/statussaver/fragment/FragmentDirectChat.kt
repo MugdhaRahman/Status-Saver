@@ -1,60 +1,120 @@
 package com.androvine.statussaver.fragment
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.androvine.statussaver.R
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.androvine.statussaver.databinding.FragmentDirectChatBinding
+import com.androvine.statussaver.db.DirectChatContactDB
+import com.androvine.statussaver.model.ModelContact
+import java.io.UnsupportedEncodingException
+import java.net.URLEncoder
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [FragmentDirectChat.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FragmentDirectChat : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private val binding: FragmentDirectChatBinding by lazy {
+        FragmentDirectChatBinding.inflate(layoutInflater)
     }
 
+    private val directChatContactDB: DirectChatContactDB by lazy {
+        DirectChatContactDB(requireContext())
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_direct_chat, container, false)
+    ): View {
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentDirectChat.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentDirectChat().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupOnClicks()
+
     }
+
+    private fun setupOnClicks() {
+
+        binding.ivClear.setOnClickListener {
+            binding.number.setText("")
+            hideKeyboard()
+        }
+
+        binding.chkSave.setOnCheckedChangeListener { _, b ->
+            if (b) {
+                binding.name.visibility = View.VISIBLE
+            } else {
+                binding.name.visibility = View.GONE
+            }
+        }
+
+        binding.send.setOnClickListener {
+            if (binding.number.text.toString().trim().isEmpty()) {
+                Toast.makeText(requireContext(), "Please enter a number", Toast.LENGTH_SHORT).show()
+            } else if (binding.messageField.text.toString().trim().isEmpty()) {
+                Toast.makeText(requireContext(), "Please enter a message", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                if (binding.chkSave.isChecked) {
+                    val name: String = binding.name.text.toString()
+                    val number =
+                        binding.ccp.selectedCountryCode + " " + binding.number.text
+                            .toString()
+                    if (directChatContactDB.checkIfContactExists(number)) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Contact already saved",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        directChatContactDB.addSingleContact(ModelContact(name, number))
+                    }
+                }
+                sendWhatsAppMessage()
+            }
+        }
+
+
+    }
+
+
+    private fun sendWhatsAppMessage() {
+        if (binding.number.text.toString().trim().isEmpty()) {
+            Toast.makeText(requireContext(), "Please Enter a Number", Toast.LENGTH_SHORT).show()
+        } else if (binding.messageField.text.toString().trim().isEmpty()) {
+            Toast.makeText(requireContext(), "Please Enter a Message", Toast.LENGTH_SHORT).show()
+        } else {
+            val str = binding.ccp.selectedCountryCode + " " + binding.number.text.toString()
+            try {
+                startActivity(
+                    Intent(
+                        "android.intent.action.VIEW",
+                        Uri.parse(
+                            "whatsapp://send/?text=" + URLEncoder.encode(
+                                binding.messageField.text.toString(),
+                                "UTF-8"
+                            ) + "&phone=" + str
+                        )
+                    )
+                )
+            } catch (e: UnsupportedEncodingException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+
+    private fun hideKeyboard() {
+        val inputMethodManager =
+            requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(binding.messageField.windowToken, 0)
+    }
+
 }
