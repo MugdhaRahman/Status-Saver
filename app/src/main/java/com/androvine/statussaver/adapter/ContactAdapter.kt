@@ -34,7 +34,7 @@ class ContactAdapter(
         holder.binding.contactNumber.text = contact.number
 
         holder.binding.deleteContact.setOnClickListener {
-            deleteContact(position, listOfContact)
+            deleteContact(position)
         }
 
         holder.binding.message.setOnClickListener {
@@ -65,10 +65,11 @@ class ContactAdapter(
     }
 
 
-    fun deleteContact(position: Int, list: MutableList<ModelContact>) {
+    fun deleteContact(position: Int) {
         val db = DirectChatContactDB(context)
         db.deleteSingleContact(listOfContact[position])
-        updateList(list)
+        listOfContact.removeAt(position)
+        notifyItemRemoved(position)
     }
 
     fun sendMessages(position: Int, holder: ViewHolder) {

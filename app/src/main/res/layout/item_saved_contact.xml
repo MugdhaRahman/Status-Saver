@@ -1,12 +1,14 @@
 <!-- item_saved_contact.xml -->
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:background="@color/backgroundColor"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="3dp">
+    app:cardCornerRadius="8dp"
+    app:strokeWidth="0.8dp"
+    app:cardElevation="3dp"
+    app:strokeColor="@color/colorPrimary">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -135,4 +137,4 @@
     </RelativeLayout>
 
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

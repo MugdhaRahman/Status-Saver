@@ -31,6 +31,7 @@ class FragmentContacts : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         contactAdapter = ContactAdapter(requireContext(), mutableListOf())
+        setupUI()
     }
 
     private fun updateContactList() {
@@ -51,10 +52,21 @@ class FragmentContacts : Fragment() {
 
     }
 
+    private fun setupUI() {
+        if (contactList.isEmpty()) {
+            binding.savedContactsRv.visibility = View.GONE
+            binding.noContactsLayout.visibility = View.VISIBLE
+        } else {
+            binding.savedContactsRv.visibility = View.VISIBLE
+            binding.noContactsLayout.visibility = View.GONE
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         updateContactList()
         setupRecyclerView()
+        setupUI()
     }
 
 
