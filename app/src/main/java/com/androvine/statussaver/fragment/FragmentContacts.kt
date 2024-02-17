@@ -31,7 +31,6 @@ class FragmentContacts : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         contactAdapter = ContactAdapter(requireContext(), mutableListOf())
-        setupUI()
     }
 
     private fun updateContactList() {
