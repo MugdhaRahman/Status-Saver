@@ -72,6 +72,13 @@ class ContactAdapter(
         notifyItemRemoved(position)
     }
 
+    fun deleteAllContacts() {
+        val db = DirectChatContactDB(context)
+        db.deleteAllContacts()
+        listOfContact.clear()
+        notifyDataSetChanged()
+    }
+
     fun sendMessages(position: Int, holder: ViewHolder) {
         val contact = listOfContact[position]
         val number = contact.number

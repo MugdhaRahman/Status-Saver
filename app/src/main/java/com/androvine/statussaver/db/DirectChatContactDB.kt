@@ -68,6 +68,13 @@ class DirectChatContactDB(context: Context) :
         db.close()
     }
 
+    // delete all contacts
+    fun deleteAllContacts() {
+        val db = writableDatabase
+        db.execSQL("DELETE FROM $TABLE_NAME")
+        db.close()
+    }
+
     // ------------------------------------ OTHER ------------------------------------
 
     // check if contact exists by number
