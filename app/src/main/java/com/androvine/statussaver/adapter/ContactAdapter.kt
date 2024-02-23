@@ -108,8 +108,6 @@ class ContactAdapter(
 
     }
 
-
     class ViewHolder(val binding: ItemSavedContactBinding) : RecyclerView.ViewHolder(binding.root)
-
 
 }
