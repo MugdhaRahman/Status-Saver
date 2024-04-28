@@ -42,3 +42,35 @@ You can download the latest version (1.0) APK from here
 <br>
 
 Check out the [releases](https://github.com/MugdhaRahman/Status-Saver/releases) section for more details.
+
+## Tech Stack
+<p><strong>Programming Languages</strong></p>
+<ul>
+<li><strong>Java &amp; Kotlin</strong>: For robust and efficient app development.</li>
+<li><strong>XML</strong>: To craft the user interface with precision.</li>
+</ul>
+<p><strong>Database</strong></p>
+<ul>
+<li><strong>SQLite</strong>: For reliable local data storage and management.</li>
+</ul>
+<p><strong>Integrated Development Environment (IDE)</strong></p>
+<ul>
+<li><strong>Android Studio</strong>: The official IDE for Android development, providing a comprehensive suite of tools for building apps.</li>
+</ul>
+<p><strong>Design Tools</strong></p>
+<ul>
+<li><strong>Figma</strong>: Utilized for high-fidelity UI/UX design and prototyping.</li>
+</ul>
+<p><strong>Libraries</strong></p>
+<ul>
+<li><strong><a href="https://github.com/airbnb/lottie-android" target="_blank" rel="noopener noreferrer">Lottie</a></strong>: For adding high-quality animations to the app.</li>
+<li><strong><a href="https://github.com/bumptech/glide" target="_new">Glide</a></strong>: For efficient image loading and caching.</li>
+ <li><strong><a href="https://github.com/hbb20/CountryCodePickerProject" target="_new">CCP</a></strong>: For country code picker.</li>
+
+</ul>
+<p><strong>Version Control</strong></p>
+<ul>
+<li><strong>GitHub</strong>: Used for source code management, allowing for collaborative development and version tracking.</li>
+</ul>
+
+
