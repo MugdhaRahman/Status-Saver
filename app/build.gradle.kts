@@ -52,9 +52,6 @@ dependencies {
     //for lottie animation
     implementation("com.airbnb.android:lottie:6.2.0")
 
-    // koin for dependency injection
-    implementation("io.insert-koin:koin-android:3.5.0")
-
     // for preference
     implementation("androidx.preference:preference-ktx:1.2.1")
 
