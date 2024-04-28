@@ -19,3 +19,14 @@ whatsapp number
 |---|---|---|
 | ![shot4](https://github.com/MugdhaRahman/Status-Saver/assets/113788414/6d216214-6ba2-41f2-a8f4-2c7c650d27d1) | ![shot5](https://github.com/MugdhaRahman/Status-Saver/assets/113788414/e6f44961-69f3-4cca-818c-ab0ed8fe0161) | ![shot6](https://github.com/MugdhaRahman/Status-Saver/assets/113788414/bf084806-d343-4a5b-9e2d-b819ce5dd814) | 
 
+
+## Features
+This app has two main fatures
+
+**Status Save**
+- Save any whatsapp photo or video status
+- View them see details and also you can delete it from here
+
+**Direct Chat**
+- Send quick message to any unsaved whatsapp numbers
+- You can save the number in the app while sending message for future quick message
