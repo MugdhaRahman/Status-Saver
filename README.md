@@ -30,3 +30,15 @@ This app has two main fatures
 **Direct Chat**
 - Send quick message to any unsaved whatsapp numbers
 - You can save the number in the app while sending message for future quick message
+
+## Download
+
+You can download the latest version (1.0) APK from here
+
+<a href="https://github.com/MugdhaRahman/Status-Saver/releases/download/1.0.0/Status.saver.apk">
+<img src="https://raw.githubusercontent.com/ahmmedrejowan/DeviceInfo/master/files/download.png" width="256px" align="center"/>
+</a>
+
+<br>
+
+Check out the [releases](https://github.com/MugdhaRahman/Status-Saver/releases) section for more details.
