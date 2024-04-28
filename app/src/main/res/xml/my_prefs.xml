@@ -49,7 +49,7 @@
         <Preference
             android:icon="@drawable/ic_pref_creator"
             android:key="pref_creator"
-            android:summary="Androvine"
+            android:summary="MR Apps"
             android:title="Created by" />
 
 
