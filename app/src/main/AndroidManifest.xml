@@ -51,7 +51,8 @@
             android:exported="false" />
         <activity
             android:name=".activity.SplashScreen"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.StatusSaver.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
