@@ -22,7 +22,7 @@ whatsapp number
 
 
 ## Features
-This app has two main fatures
+This app has two main features
 
 **Status Save**
 - Save any whatsapp photo or video status
